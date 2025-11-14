@@ -5,7 +5,7 @@ const projects = [
     id: 1,
     title: "Resumind - AI Resume Analyzer",
     description: "A sleek React and Tailwind CSS web app that analyzes resumes and provides accurate ATS (Applicant Tracking System) scores instantly.",
-    image: "/projects/project1.png",
+    image: "./public/pht2.png",
     tags: ["React", "TailwindCSS", "Puter.js"],
     demoUrl: "#",
     githubUrl: "https://github.com/AKDev32/ai-resume-analyzer",
@@ -15,7 +15,7 @@ const projects = [
     title: "DALL·E 2.0 - AI Image Generator",
     description:
       "A modern AI image generation app that creates unique visuals from text prompts using advanced machine learning and DALL·E API integration.",
-    image: "/projects/project2.png",
+    image: "./public/pht1.png",
     tags: ["React", "TailwindCSS", "DALL·E API"],
     demoUrl: "#",
     githubUrl: "#",
