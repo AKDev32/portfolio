@@ -1,33 +1,54 @@
 import { useState } from "react";
 import { cn } from "@/lib/utils";
+import htmlLogo from "../assets/html.svg";
+import CSSLogo from "../assets/css.svg";
+import JSLogo from "../assets/js.svg";
+import ReactLogo from "../assets/react.svg";
+import TailWindCSSLogo from "../assets/tcss.svg";
+import NodeLogo from "../assets/nodejs.svg";
+import ExpressLogo from "../assets/express.svg";
+import MongodbLogo from "../assets/mongodb.svg";
+import MYSQLLogo from "../assets/mysql.svg";
+import GitLogo from "../assets/git.svg";
+import FigmaLogo from "../assets/figma.svg";
+import VSLogo from "../assets/vs.svg";
+import PostmanLogo from "../assets/postman.svg";
+import DSALogo from "../assets/dsa.png";
+import OOPLogo from "../assets/OOP.svg.png";
+import OSLogo from "../assets/os.jpg";
+import CNLogo from "../assets/cn.png";
+import DBMSLogo from "../assets/dbms.png";
 
+// --- START: Updated Skills Data (Use your actual logo paths/components) ---
 const skills = [
   // Frontend
-  { name: "HTML/CSS", level: 95, category: "frontend" },
-  { name: "JavaScript", level: 90, category: "frontend" },
-  { name: "React", level: 90, category: "frontend" },
-  // { name: "TypeScript", level: 85, category: "frontend" },
-  { name: "Tailwind CSS", level: 90, category: "frontend" },
-  // { name: "Next.js", level: 80, category: "frontend" },
+  // *** Replace the 'logo' string with your actual image path or icon component ***
+  { name: "HTML", category: "frontend", logo: htmlLogo },
+  { name: "CSS", category: "frontend", logo: CSSLogo },
+  { name: "JavaScript", category: "frontend", logo: JSLogo },
+  { name: "React", category: "frontend", logo: ReactLogo },
+  { name: "Tailwind CSS", category: "frontend", logo: TailWindCSSLogo },
 
   // Backend
-  { name: "Node.js", level: 80, category: "backend" },
-  { name: "Express", level: 75, category: "backend" },
-  { name: "MongoDB", level: 70, category: "backend" },
-  { name: "MySQL", level: 90, category: "backend" },
-  // { name: "GraphQL", level: 60, category: "backend" },
+  { name: "Node.js", category: "backend", logo: NodeLogo },
+  { name: "Express", category: "backend", logo: ExpressLogo },
+  { name: "MongoDB", category: "backend", logo: MongodbLogo },
+  { name: "MySQL", category: "backend", logo: MYSQLLogo },
 
   // Tools
-  { name: "Git/GitHub", level: 90, category: "tools" },
-  // { name: "Docker", level: 70, category: "tools" },
-  { name: "Figma", level: 85, category: "tools" },
-  { name: "VS Code", level: 95, category: "tools" },
+  { name: "Git/GitHub", category: "tools", logo: GitLogo },
+  { name: "Figma", category: "tools", logo: FigmaLogo },
+  { name: "VS Code", category: "tools", logo: VSLogo },
+  { name: "Postman" , category: "tools", logo: PostmanLogo },
 
-  { name: "DSA", level: 90, category: "Core CS" },
-  { name: "OOP", level: 90, category: "Core CS" },
-  { name: "Operating System", level: 75, category: "Core CS" },
-  { name: "Computer Network", level: 80, category: "Core CS" },
+  // Core CS
+  { name: "DSA", category: "Core CS", logo: DSALogo },
+  { name: "OOP", category: "Core CS", logo: OOPLogo },
+  { name: "Operating System", category: "Core CS", logo: OSLogo },
+  { name: "Computer Network", category: "Core CS", logo: CNLogo },
+  { name: "DBMS", category: "Core CS", logo: DBMSLogo },
 ];
+// --- END: Updated Skills Data ---
 
 const categories = ["all", "frontend", "backend", "tools", "Core CS"];
 
@@ -41,19 +62,20 @@ export const SkillsSection = () => {
     <section id="skills" className="py-24 px-4 relative bg-secondary/30">
       <div className="container mx-auto max-w-5xl">
         <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">
-          My <span className="text-primary"> Skills</span>
+          My <span className="text-primary"> Expertise</span>
         </h2>
 
+        {/* Category Filter Buttons */}
         <div className="flex flex-wrap justify-center gap-4 mb-12">
           {categories.map((category, key) => (
             <button
               key={key}
               onClick={() => setActiveCategory(category)}
               className={cn(
-                "px-5 py-2 rounded-full transition-colors duration-300 capitalize",
+                "px-5 py-2 rounded-full transition-colors duration-300 capitalize text-sm font-medium",
                 activeCategory === category
-                  ? "bg-primary text-primary-foreground"
-                  : "bg-secondary/70 text-forefround hover:bd-secondary"
+                  ? "bg-primary text-primary-foreground shadow-lg"
+                  : "bg-card text-foreground hover:bg-secondary/80 border border-border"
               )}
             >
               {category}
@@ -61,27 +83,36 @@ export const SkillsSection = () => {
           ))}
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {/* Skills Grid */}
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6">
           {filteredSkills.map((skill, key) => (
             <div
               key={key}
-              className="bg-card p-6 rounded-lg shadow-xs card-hover"
+              // Card styling for a clean, professional icon display
+              className="bg-card p-6 rounded-xl shadow-md card-hover flex flex-col items-center justify-center text-center transition-all duration-300 transform hover:scale-[1.03] hover:shadow-xl border border-border"
             >
-              <div className="text-left mb-4">
-                <h3 className="font-semibold text-lg"> {skill.name}</h3>
-              </div>
-              <div className="w-full bg-secondary/50 h-2 rounded-full overflow-hidden">
-                <div
-                  className="bg-primary h-2 rounded-full origin-left animate-[grow_1.5s_ease-out]"
-                  style={{ width: skill.level + "%" }}
-                />
+              {/* Skill Logo/Icon Area */}
+              <div className="mb-4">
+                {/* * IMPORTANT: Replace the 'img' tag below with an actual 
+                  * <img src={skill.logo} /> tag or an Icon component 
+                  * (e.g., <FaReact size={48} className="text-blue-500" />)
+                */}
+                <div className="w-12 h-12 md:w-16 md:h-16 flex items-center justify-center">
+                   {/* Placeholder for the actual logo image/component */}
+                   <img 
+                      src={skill.logo} 
+                      alt={`${skill.name} Logo`} 
+                      className="w-full h-full object-contain"
+                      // Example: You might want to use different icons sizes/styles
+                      // based on the icon source.
+                   />
+                </div>
               </div>
 
-              <div className="text-right mt-1">
-                <span className="text-sm text-muted-foreground">
-                  {skill.level}%
-                </span>
-              </div>
+              {/* Skill Name */}
+              <h3 className="font-semibold text-base md:text-lg whitespace-nowrap"> 
+                {skill.name}
+              </h3>
             </div>
           ))}
         </div>

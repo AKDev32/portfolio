@@ -1,31 +1,34 @@
-import { Briefcase, ArrowRight } from "lucide-react";
+import { Briefcase, ArrowRight, Calendar, MapPin } from "lucide-react"; // Added Calendar and MapPin for detail
 
 const experiences = [
   {
     id: 1,
     role: "Tech Content Creator",
-    company: "You Tube",
+    company: "YouTube",
     duration: "Nov 2025 - Present",
+    location: "Remote/Online", // Added location for professionalism
     description:
-      "Create educational content on DSA, MERN Stack, and programming concepts to help learners build strong technical skills.",
-    tags: ["Programming Languages", "Data Structure & Algorithms", "MERN Stack Projects"],
+      "Produced and published engaging educational content focused on advanced Data Structures & Algorithms (DSA), the MERN Stack, and core programming principles, fostering a community of learners.",
+    tags: ["DSA", "MERN Stack", "Content Creation", "Public Speaking"],
   },
   {
     id: 2,
     role: "Open Source Contributor",
     company: "GirlScript Summer of Code",
     duration: "June 2025 - Nov 2025",
+    location: "Virtual",
     description:
-      "Contributed to open-source repositories, fixed bugs, and implemented new features for developer tools and educational projects.",
-    tags: ["Open Source", "GitHub", "Collaboration"],
+      "Actively contributed to multiple high-impact open-source repositories. Key responsibilities included debugging critical issues, implementing new developer-centric features, and participating in code reviews.",
+    tags: ["Open Source", "Git/GitHub", "Collaboration", "Code Review"],
   },
   {
     id: 3,
-    role: "MERN Trainee",
+    role: "Full Stack MERN Trainee",
     company: "Excellence Technology",
     duration: "June 2025 - Aug 2025",
+    location: "New Delhi, India", // Example location
     description:
-      "Developed and optimized full-stack web applications using React, Node.js, and MongoDB. Collaborated with the design team to build responsive and user-friendly interfaces.",
+      "Developed and optimized full-stack web applications, focusing on scalable backend services (Node/Express) and responsive, modern front-ends (React/TailwindCSS). Gained practical experience in database integration (MongoDB).",
     tags: ["React", "Node.js", "Express", "MongoDB", "TailwindCSS"],
   },
 ];
@@ -34,61 +37,90 @@ export const ExperienceSection = () => {
   return (
     <section
       id="experiences"
-      className="py-24 px-4 relative scroll-mt-20" // <-- ensures correct scroll offset
+      className="py-24 px-4 relative scroll-mt-20 bg-secondary/30" // Added light background for contrast
     >
       <div className="container mx-auto max-w-5xl">
         <h2 className="text-3xl md:text-4xl font-bold mb-4 text-center">
-          Professional <span className="text-primary">Experience</span>
+          Professional <span className="text-primary">Journey</span>
         </h2>
 
         <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
-          Here’s a summary of my professional journey, showcasing my roles,
-          responsibilities, and the technologies I’ve worked with.
+          A detailed timeline of my roles, major contributions, and the technologies utilized throughout my development career.
         </p>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {experiences.map((exp) => (
+        {/* Timeline Container */}
+        <div className="relative">
+          {/* Vertical Timeline Line */}
+          <div className="absolute left-4 md:left-1/2 w-0.5 h-full bg-border transform -translate-x-1/2"></div>
+
+          {experiences.map((exp, index) => (
             <div
               key={exp.id}
-              className="group bg-card rounded-lg overflow-hidden shadow-xs card-hover p-6"
+              className={`mb-8 flex w-full ${
+                index % 2 === 0 ? "md:justify-start" : "md:justify-end"
+              }`}
             >
-              <div className="flex items-center gap-3 mb-4">
-                <div className="p-3 bg-secondary rounded-full">
-                  <Briefcase className="text-primary" size={20} />
+              <div className="relative md:w-1/2 md:p-4">
+                {/* Timeline Dot/Marker */}
+                <div className="absolute -left-[1.3rem] top-4 md:left-1/2 md:-translate-x-1/2 w-6 h-6 rounded-full bg-primary/20 border-4 border-primary/50 flex items-center justify-center z-10">
+                  <Briefcase className="w-3 h-3 text-primary" />
                 </div>
-                <div>
-                  <h3 className="text-xl font-semibold">{exp.role}</h3>
-                  <p className="text-sm text-muted-foreground">
-                    {exp.company} • {exp.duration}
+
+                {/* Experience Card */}
+                <div
+                  className={`bg-card p-6 rounded-xl shadow-lg border border-border card-hover transition-all duration-300 ${
+                    index % 2 === 0 ? "ml-12 md:ml-0 md:text-right" : "ml-12 md:text-left"
+                  }`}
+                >
+                  <h3 className="text-xl font-bold text-primary mb-1">{exp.role}</h3>
+                  <h4 className="text-md font-semibold mb-3">{exp.company}</h4>
+
+                  {/* Metadata (Duration and Location) */}
+                  <div className={`flex items-center gap-4 text-sm text-muted-foreground mb-4 ${
+                      index % 2 === 0 ? "md:justify-end" : "md:justify-start"
+                  }`}>
+                    <div className="flex items-center gap-1">
+                      <Calendar className="w-4 h-4" />
+                      {exp.duration}
+                    </div>
+                    <div className="flex items-center gap-1">
+                      <MapPin className="w-4 h-4" />
+                      {exp.location}
+                    </div>
+                  </div>
+
+                  <p className="text-sm text-foreground mb-4">
+                    {exp.description}
                   </p>
+
+                  {/* Tags */}
+                  <div className={`flex flex-wrap gap-2 mt-3 ${
+                      index % 2 === 0 ? "md:justify-end" : "md:justify-start"
+                  }`}>
+                    {exp.tags.map((tag, i) => (
+                      <span
+                        key={i}
+                        className="px-3 py-1 text-xs font-medium bg-secondary/70 text-secondary-foreground rounded-full border border-border shadow-sm"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
                 </div>
-              </div>
-
-              <p className="text-muted-foreground text-sm mb-4">
-                {exp.description}
-              </p>
-
-              <div className="flex flex-wrap gap-2 mt-3">
-                {exp.tags.map((tag, i) => (
-                  <span
-                    key={i}
-                    className="px-2 py-1 text-xs font-medium border rounded-full bg-secondary text-secondary-foreground"
-                  >
-                    {tag}
-                  </span>
-                ))}
               </div>
             </div>
           ))}
         </div>
 
-        <div className="text-center mt-12">
+        {/* Call to Action Button */}
+        <div className="text-center mt-16">
           <a
             className="cosmic-button w-fit flex items-center mx-auto gap-2"
             target="_blank"
+            rel="noopener noreferrer"
             href="https://linkedin.com/in/aman32"
           >
-            View on LinkedIn <ArrowRight size={16} />
+            View Full Profile on LinkedIn <ArrowRight size={16} />
           </a>
         </div>
       </div>
