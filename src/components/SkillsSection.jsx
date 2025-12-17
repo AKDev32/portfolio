@@ -13,11 +13,11 @@ import GitLogo from "../assets/git.svg";
 import FigmaLogo from "../assets/figma.svg";
 import VSLogo from "../assets/vs.svg";
 import PostmanLogo from "../assets/postman.svg";
-import DSALogo from "../assets/dsa.png";
-import OOPLogo from "../assets/OOP.svg.png";
-import OSLogo from "../assets/os.jpg";
-import CNLogo from "../assets/cn.png";
-import DBMSLogo from "../assets/dbms.png";
+// import DSALogo from "../assets/dsa.png";
+// import OOPLogo from "../assets/OOP.svg.png";
+// import OSLogo from "../assets/os.jpg";
+// import CNLogo from "../assets/cn.png";
+// import DBMSLogo from "../assets/dbms.png";
 
 // --- START: Updated Skills Data (Use your actual logo paths/components) ---
 const skills = [
@@ -42,15 +42,15 @@ const skills = [
   { name: "Postman" , category: "tools", logo: PostmanLogo },
 
   // Core CS
-  { name: "DSA", category: "Core CS", logo: DSALogo },
-  { name: "OOP", category: "Core CS", logo: OOPLogo },
-  { name: "Operating System", category: "Core CS", logo: OSLogo },
-  { name: "Computer Network", category: "Core CS", logo: CNLogo },
-  { name: "DBMS", category: "Core CS", logo: DBMSLogo },
+  // { name: "DSA", category: "Core CS", logo: DSALogo },
+  // { name: "OOP", category: "Core CS", logo: OOPLogo },
+  // { name: "Operating System", category: "Core CS", logo: OSLogo },
+  // { name: "Computer Network", category: "Core CS", logo: CNLogo },
+  // { name: "DBMS", category: "Core CS", logo: DBMSLogo },
 ];
 // --- END: Updated Skills Data ---
 
-const categories = ["all", "frontend", "backend", "tools", "Core CS"];
+const categories = ["all", "frontend", "backend", "tools"];
 
 export const SkillsSection = () => {
   const [activeCategory, setActiveCategory] = useState("all");
